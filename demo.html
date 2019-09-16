@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            width: 100%;
+            height: 1000px;
+            background-color: black
+        }
+
+        div {
+
+            position: absolute;
+            border-radius: 20%;
+            width: 6px;
+            height: 6px;
+            background-color: #fff;
+            transition: all 3s linear;
+            /* background-color: rgb(red, green, blue) */
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        var body = document.body;
+
+        function Sknow() {
+            this.creatsknow = function () {
+                var div = document.createElement('div');
+                body.appendChild(div);
+                div.style.backgroundColor = 'rgb(' + parseInt(Math.random() * 255) + "," + parseInt(Math.random() *255) + ',' + parseInt(Math.random() * 255) + ')';
+                div.style.left = Math.random() * body.offsetWidth + 'px';
+                div.style.top = Math.random() * (body.offsetHeight / 4) + 'px';
+            }
+        }
+        var sno = new Sknow()
+        var time = setInterval(
+            function creats() {
+                sno.creatsknow()
+                function animate() {
+                    var divs = document.querySelectorAll('div');
+                    for (var i = 0; i < divs.length; i++) {
+                        divs[i].style.top = body.offsetHeight + "px";
+                        divs[i].style.left = Math.random() * body.offsetWidth+ "px";
+                        divs[i].style.transition = 10 + "s";
+                        if (divs[i].offsetTop >= 1000) {
+                            divs[i].remove()
+                        }
+                    }
+                }
+                animate();
+            }, 50)
+    </script>
+</body>
+
+</html>
