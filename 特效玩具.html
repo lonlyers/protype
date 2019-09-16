@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            height: 1200px;
+            width: 1600px;
+            background-color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <input type="button" id="btn" value="点击"> -->
+
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+        $(function(){
+             //随机数字函数
+        function random(n) {
+            return parseInt(Math.random() * n + 1);
+        }
+        //随机颜色函数
+        function color() {
+            var col = ['red', 'yellow', 'green', 'pink', 'purper', 'orange', 'blue', 'skyblue', 'lime', 'white'];
+            return col[random(col.length - 1)];
+        }
+
+        //随机大小函数
+        function size(left,top) {
+            var x = random(20);
+            return {
+                'width': x, 'height': x, 'position': 'absolute', 'left': left, 'top': top,
+                'border-radius': x / 2
+            };
+        }
+        //创建层级函数
+        var body = document.querySelector('body');
+        var count = 0;
+        function box(left,top) {
+            count++;
+            var clsname = 'a' + count;
+            var y = innerHeight;
+            var w = random(innerWidth);
+            var dv = document.createElement('div');
+            dv.style.backgroundColor = color();
+            dv.className = clsname;
+            body.appendChild(dv);
+            $('.' + clsname).css(size(left,top)).animate({ 'top': y, 'left': w }, 2000, function () {
+                $('.' + clsname).remove();
+            })
+        }
+        //鼠标移动事件函数
+        document.onmousemove = function (e) {
+            var left=e.pageX;
+            var  top=e.pageY;
+                box(left,top);
+                console.log(left,top);
+            
+        }
+        })
+       
+
+        
+    </script>
+</body>
+
+</html>
